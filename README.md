@@ -1,4 +1,4 @@
-# E-commerce User Platform Requirements Analysis
+# Database design 
 
 
 ## Brands
