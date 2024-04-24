@@ -50,3 +50,10 @@
 - Cancel Payment
 - Fail Payment
 - IPN
+
+## installed package
+
+`npm i nodemailer`
+`npm i jose`
+`npm install prisma --save-dev`
+`npx prisma init --datasource-provider mysql`
