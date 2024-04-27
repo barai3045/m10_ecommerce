@@ -180,7 +180,7 @@ model product_reviews {
   
   customer_profiles customer_profiles   @relation(fields: [customer_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
   products          products            @relation(fields: [product_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
-
+  
 }
 
 
