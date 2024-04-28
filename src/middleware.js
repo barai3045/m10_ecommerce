@@ -6,8 +6,8 @@ export async function middleware(req, res){
         let token=req.cookies.get('token');
         let payload = await VerifyToken(token['value']);
         const requestHeader = new Headers(req.headers);
-        requestHeader.ser('email', payload['email'])
-        requestHeader.ser('id', payload['id'])
+        requestHeader.set('email', payload['email'])
+        requestHeader.set('id', payload['id'])
 
         return NextResponse.next({
             request: {
