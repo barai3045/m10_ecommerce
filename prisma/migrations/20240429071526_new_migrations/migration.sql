@@ -1,4 +1,28 @@
 -- CreateTable
+CREATE TABLE `brands` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `brandName` VARCHAR(50) NOT NULL,
+    `brandImg` VARCHAR(300) NOT NULL,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    UNIQUE INDEX `brands_brandName_key`(`brandName`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `categories` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `categoryName` VARCHAR(50) NOT NULL,
+    `categoryImg` VARCHAR(300) NOT NULL,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    UNIQUE INDEX `categories_categoryName_key`(`categoryName`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `products` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(200) NOT NULL,
@@ -105,8 +129,6 @@ CREATE TABLE `product_carts` (
     `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
-    UNIQUE INDEX `product_carts_user_id_key`(`user_id`),
-    UNIQUE INDEX `product_carts_product_id_key`(`product_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -118,8 +140,6 @@ CREATE TABLE `product_wishes` (
     `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
-    UNIQUE INDEX `product_wishes_user_id_key`(`user_id`),
-    UNIQUE INDEX `product_wishes_product_id_key`(`product_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -133,8 +153,6 @@ CREATE TABLE `product_reviews` (
     `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
-    UNIQUE INDEX `product_reviews_customer_id_key`(`customer_id`),
-    UNIQUE INDEX `product_reviews_product_id_key`(`product_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -154,7 +172,6 @@ CREATE TABLE `invoices` (
     `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
 
-    UNIQUE INDEX `invoices_user_id_key`(`user_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

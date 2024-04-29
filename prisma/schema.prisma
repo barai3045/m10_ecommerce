@@ -142,8 +142,8 @@ model customer_profiles {
 
 model product_carts {
   id              Int         @id @default(autoincrement())
-  user_id         Int         @unique
-  product_id      Int         @unique
+  user_id         Int         
+  product_id      Int         
   color           String      @db.VarChar(200)
   size            String      @db.VarChar(200)
   qty             Float
@@ -157,8 +157,8 @@ model product_carts {
 
 model product_wishes {
   id              Int         @id @default(autoincrement())
-  user_id         Int         @unique
-  product_id      Int         @unique
+  user_id         Int         
+  product_id      Int         
   createdAt       DateTime    @default(now()) @db.Timestamp(0)
   updatedAt       DateTime    @default(now()) @updatedAt @db.Timestamp(0)
   users           users       @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
@@ -172,8 +172,8 @@ model product_reviews {
   description     String      @db.VarChar(1000)
   rating          String      @db.VarChar(10)
 
-  customer_id     Int         @unique
-  product_id      Int         @unique
+  customer_id     Int         
+  product_id      Int         
 
   createdAt       DateTime    @default(now()) @db.Timestamp(0)
   updatedAt       DateTime    @default(now()) @updatedAt @db.Timestamp(0)
@@ -199,7 +199,7 @@ model invoices {
   delivary_status  invoices_deliveru_status
   payment_status  String @db.VarChar(255) 
 
-  user_id         Int         @unique
+  user_id         Int         
   createdAt       DateTime    @default(now()) @db.Timestamp(0)
   updatedAt       DateTime    @default(now()) @updatedAt @db.Timestamp(0)
   
@@ -210,9 +210,9 @@ model invoices {
 }
 model invoice_products {
   id              Int         @id @default(autoincrement())
-  invoice_id Int
-  product_id Int
-  user_id Int
+  invoice_id      Int
+  product_id      Int
+  user_id         Int
 
   qty Float
   sale_price Float
@@ -240,15 +240,15 @@ model policies {
 
 
 model sslcommerz_accounts {
-  id Int @id @default(autoincrement())
-  store_id String @db.VarChar(255)
-  store_passwd String @db.VarChar(255)
-  currency String @db.VarChar(255)
-  success_url String @db.VarChar(255)
-  fail_url String @db.VarChar(255)
-  cancel_url String @db.VarChar(255)
-  ipn_url String @db.VarChar(255)
-  init_url String @db.VarChar(255)
+  id            Int           @id @default(autoincrement())
+  store_id      String        @db.VarChar(255)
+  store_passwd  String        @db.VarChar(255)
+  currency      String        @db.VarChar(255)
+  success_url   String        @db.VarChar(255)
+  fail_url      String        @db.VarChar(255)
+  cancel_url    String        @db.VarChar(255)
+  ipn_url       String        @db.VarChar(255)
+  init_url       String       @db.VarChar(255)
   createdAt       DateTime    @default(now()) @db.Timestamp(0)
   updatedAt       DateTime    @default(now()) @updatedAt @db.Timestamp(0)
   
