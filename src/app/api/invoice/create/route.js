@@ -61,8 +61,79 @@ export async function GET(req, res){
 
         //create invoice product
         let invoice_id = createInvoice['id'];
+
+        for (const element of cartProducts){
+            await prisma.invoice_products.create({
+                data:{
+                    invoice_id:invoice_id,
+                    product_id:element['product_id'],
+                    user_id:id,
+                    qty:element['qty'],
+                    sale_price:element['products']['discount']?element['products']['discount_price']:element['products']['price'],
+                    color:element['color'],
+                    size:element['size']
+                }
+            })
+        }
+
+        // step 06: Remove Cart
+        await prisma.product_carts.deleteMany({
+            where:{user_id:id}
+        })
+
+        // step07: Prepate SSL Payment
+
+        let PaymentSettings = await prisma.sslcommerz_accounts.findFirst();
+        const form = new FormData();
+            form.append("store_id", PaymentSettings['store_id']) 
+            form.append("store_passwd", PaymentSettings['store_passwd'])
+            form.append("total_amount", payable.toString())
+            form.append("currency", PaymentSettings['currency']) 
+            form.append("tran_id", tran_id) 
+
+           
+
+            form.append("success_url", `${PaymentSettings['success_url']}?tran_id=${tran_id}`) 
+            form.append("fail_url", `${PaymentSettings['fail_url']}?tran_id=${tran_id}`) 
+            form.append("cancel_url", `${PaymentSettings['cancel_url']}?tran_id=${tran_id}`) 
+            form.append("ipn_url", `${PaymentSettings['ipn_url']}?tran_id=${tran_id}`) 
+            
+            form.append("cus_name", profile['cus_name']) 
+            form.append("cus_email", cus_email) 
+            form.append("cus_add1", profile['cus_add']) 
+            form.append("cus_add2", profile['cus_add']) 
+            form.append("cus_city", profile['cus_city']) 
+            form.append("cus_state", profile['cus_state']) 
+            form.append("cus_postcode", profile['cus_postcode']) 
+            form.append("cus_country", profile['cus_country']) 
+            form.append("cus_phone", profile['cus_phone']) 
+            form.append("cus_fax",profile['cus_fax']) 
+
+            form.append("shipping_method","YES") 
+            form.append("ship_name", profile['ship_name']) 
+            form.append("ship_add1", profile['ship_add']) 
+            form.append("ship_add2", profile['ship_add']) 
+            form.append("ship_city", profile['ship_city']) 
+            form.append("ship_state", profile['ship_state']) 
+            form.append("ship_country", profile['ship_country']) 
+            form.append("ship_postcode", profile['ship_postcode']) 
+
+            form.append("product_name", "According to Invoice") 
+            form.append("product_category", "According to Invoice") 
+            form.append("product_profile", "According to Invoice") 
+            form.append("product_amount", "According to Invoice") 
+
+            let SSLRes=await fetch(PaymentSettings['init_url'],{
+                method:'POST',
+                body:form
+            })
+
+            
+            let SSLResJSON = await SSLRes.json()
+
         
-        return NextResponse.json({status:"success", data:invoice_id})
+        return NextResponse.json({status:"success", data:SSLResJSON})
+
     } catch(e){
         return NextResponse.json({status:"fail", data:e.toString()})
     }
