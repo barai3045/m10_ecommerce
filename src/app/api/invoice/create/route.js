@@ -84,6 +84,7 @@ export async function GET(req, res){
         // step07: Prepate SSL Payment
 
         let PaymentSettings = await prisma.sslcommerz_accounts.findFirst();
+        
         const form = new FormData();
             form.append("store_id", PaymentSettings['store_id']) 
             form.append("store_passwd", PaymentSettings['store_passwd'])
