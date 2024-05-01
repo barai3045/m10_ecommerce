@@ -6,6 +6,7 @@ export async function POST(req, res){
     try{
 
         let headerList = headers();
+        
         let id = parseInt(headerList.get('id'));
         let reqBody = await req.json();
         const prisma = new PrismaClient();
@@ -27,6 +28,7 @@ export async function GET(req, res){
     try{
 
         let headerList = headers();
+        
         let id = parseInt(headerList.get('id'));
         
         const prisma = new PrismaClient();
