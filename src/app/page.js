@@ -1,4 +1,5 @@
 import Master from "@/components/master/Master";
+import Slider from "@/components/product/Slider";
 import BrandsSkeleton from "@/skeleton/BrandsSkeleton";
 import CategoriesSkeleton from "@/skeleton/CategoriesSkeleton";
 import FeaturesSkeleton from "@/skeleton/FeaturesSkeleton";
@@ -9,11 +10,7 @@ import Image from "next/image";
 export default function Home() {
   return (
       <Master>
-          <SliderSkeleton/>
-          <FeaturesSkeleton/>
-          <BrandsSkeleton/>
-          <ProductsSkeleton/>
-          <CategoriesSkeleton/>
+          <Slider/>
       </Master>
   );
 }

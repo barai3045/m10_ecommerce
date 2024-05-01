@@ -1,4 +1,4 @@
-## 25 [Home] Working With Home Page Loading Skeletons
+## 26 [Home] Working Slider
 
 
 
