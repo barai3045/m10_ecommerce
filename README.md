@@ -1,1 +1,1 @@
-## 23 [Master] Working With header Footer Master Layout
+## 24 [Home] Working With Home Page Loading Skeletons
