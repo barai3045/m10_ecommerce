@@ -2,17 +2,22 @@ import { PrismaClient } from "@prisma/client";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res){
+export async function POST(req, res){
     try {
         let headerList = headers();
         let id = parseInt(headerList.get('id'));
         
         const prisma = new PrismaClient();
+        const reqBody=await req.json();
         
-        const result = await prisma.invoices.findMany({
+        const result = await prisma.invoice_products.findMany({
             where:{
-                user_id:id
-            }
+                AND:[
+                    { user_id:id},
+                    {invoice_id:reqBody['invoice_id']}
+                ]
+            },
+            include:{products:true}
         })
 
         return NextResponse.json({status:"success", data:result})
