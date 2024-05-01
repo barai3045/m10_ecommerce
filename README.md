@@ -1,4 +1,4 @@
-## 26 [Home] Working Slider
+## 27 [Home] Working Features
 
 
 

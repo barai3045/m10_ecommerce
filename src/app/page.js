@@ -1,3 +1,4 @@
+import Features from "@/components/features/Features";
 import Master from "@/components/master/Master";
 import Slider from "@/components/product/Slider";
 import BrandsSkeleton from "@/skeleton/BrandsSkeleton";
@@ -6,11 +7,16 @@ import FeaturesSkeleton from "@/skeleton/FeaturesSkeleton";
 import ProductsSkeleton from "@/skeleton/ProductsSkeleton";
 import SliderSkeleton from "@/skeleton/SliderSkeleton";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
       <Master>
           <Slider/>
+          <Suspense fallback={<FeaturesSkeleton/>}>
+            <Features/>
+          </Suspense>
+          
       </Master>
   );
 }
