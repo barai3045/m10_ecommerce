@@ -28,13 +28,20 @@ const Slider = () => {
 
     const {data, isLoading} = useSWR('/api/product/slider-list', Fetcher)
    
-
-
-    if (isLoading ) return <SliderSkeleton/>
+  
+    
+    if (isLoading ) return <SliderSkeleton/> 
 
     if(data) return (
+
+        
         <Carousel controls={false} data-bs-theme="light" activeIndex={index} onSelect={handleSelect} className="hero-bg">
+        <p> {data['status']}</p>
+        
+        
         {
+           
+           
             data['data'].map((item,i)=>{
                 return (
                     <Carousel.Item key={i}>
@@ -53,6 +60,8 @@ const Slider = () => {
                             </div>
                         </div>
                     </Carousel.Item>
+
+                  
 
                 )
             })
