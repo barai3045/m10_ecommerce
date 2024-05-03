@@ -264,9 +264,12 @@ model features {
 
 enum policies_type {
   about
-  refund 
-  contact
+  buy
   complain
+  contact
+  privacy
+  refund
+  terms
 }
 
 

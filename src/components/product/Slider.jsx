@@ -36,7 +36,7 @@ const Slider = () => {
 
         
         <Carousel controls={false} data-bs-theme="light" activeIndex={index} onSelect={handleSelect} className="hero-bg">
-        <p> {data['status']}</p>
+        
         
         
         {
@@ -61,13 +61,13 @@ const Slider = () => {
                         </div>
                     </Carousel.Item>
 
-                  
-
+                
                 )
+                
             })
+
         }
-
-
+       
             <button onClick={handlePrev} className="carousel-control-prev btn rounded-5" type="button">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
@@ -76,7 +76,10 @@ const Slider = () => {
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>
-        </Carousel>
+            
+            
+            </Carousel>
+       
     )
 
     
