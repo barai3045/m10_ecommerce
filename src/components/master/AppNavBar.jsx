@@ -49,7 +49,7 @@ const AppNavBar = (props) => {
                         <i className="bi text-dark bi-heart"></i> Wish <span className="position-absolute top-0 start-100
                     translate-middle badge rounded-pill bg-warning">0</span>
                     </Link>
-                    <Link href={`${props.isLogin ? ("/user/order"):("/user/login")}`} type="button" className="btn ms-4 btn-light position-relative">
+                    <Link href={`${props.isLogin ? ("/user/order/list"):("/user/login")}`} type="button" className="btn ms-4 btn-light position-relative">
                         <i className="bi text-dark bi-truck"></i> Order 
                     </Link>         
                 </Nav>
