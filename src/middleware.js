@@ -20,10 +20,11 @@ export async function middleware(req, res){
         if(req.url.startsWith('/api/')){
             return NextResponse.json(
                 { status:"fail", data:"Unauthorized" },
-                { status:401}
+                { status: 401}
             )
         } else {
-            return res.redirect('/login');
+            // return NextResponse.redirect("/user/login");
+            return NextResponse.redirect(new URL("/user/login", req.url))
         }
     }
 
@@ -37,5 +38,6 @@ export const config ={
         '/api/user/profile',
         '/api/user/review',
         '/api/wish/:path*',
+        '/user/profile/:path*',
     ]
 }

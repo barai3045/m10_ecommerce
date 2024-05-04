@@ -57,9 +57,7 @@ const AppNavBar = (props) => {
                     <div className="input-group">
                         <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-dark" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
+                        <i className="bi bi-search"></i>
                         </button>
                     
                     </div>
@@ -71,7 +69,11 @@ const AppNavBar = (props) => {
                     </Link>
 
                     {props.isLogin ?
-                    ( <a type="button" className="btn ms-3 btn-success d-flex" href="/api/user/logout">Logout</a> )
+                    ( <>
+                        <Link type="button" className="btn ms-3 btn-success d-flex" href="/user/profile"><i className="bi bi-person"></i> </Link> 
+                        <Link type="button" className="btn ms-3 btn-success d-flex" href="/api/user/logout">Logout</Link> 
+                        </>
+                    )
                     :( <Link type="button" className="btn ms-3 btn-success d-flex" href="/user/login">LogIn</Link>)
                     }
                     

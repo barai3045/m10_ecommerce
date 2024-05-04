@@ -12,6 +12,6 @@ export function getCookies(){
     if(typeof token === 'undefined') {
         return false
     } else {
-        return token
+        return 'token='+token.value
     }
 }
