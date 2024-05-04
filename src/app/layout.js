@@ -4,6 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import '@/assets/css/main.css'
 import '@/assets/css/animate.min.css'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({ children }) {
   return (
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
       <body >
       {children}
       <NextTopLoader/>
+      <Toaster />
       </body>
     </html>
   );

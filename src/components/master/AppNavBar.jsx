@@ -4,7 +4,7 @@ import React from 'react';
 import { Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } from 'react-bootstrap';
 
 
-const AppNavBar = () => {
+const AppNavBar = (props) => {
     return (
        <>
         <div className="container-fluid text-white p-2 bg-success">
@@ -39,36 +39,43 @@ const AppNavBar = () => {
                 <Nav className="me-auto">
     
                     <Link className="btn ms-2 btn-light position-relative" href="/"> 
-                    <i className="bi bi-house"></i> Home </Link>
-                    <Link href="/cart" type="button" className="btn ms-2 btn-light position-relative">
-                    <i className="bi text-dark bi-bag"></i> Cart <span className="position-absolute top-0 start-100
-                    translate-middle badge rounded-pill bg-success">0</span>
+                        <i className="bi bi-house"></i> Home 
                     </Link>
-                    <Link href="/wish" type="button" className="btn ms-4 btn-light position-relative">
-                    <i className="bi text-dark bi-heart"></i> Wish <span className="position-absolute top-0 start-100
+                    <Link href={`${props.isLogin ? ("/user/cart"):("/user/login")}`} type="button" className="btn ms-2 btn-light position-relative">
+                        <i className="bi text-dark bi-bag"></i> Cart 
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">0</span>
+                    </Link>
+                    <Link href={`${props.isLogin ? ("/user/wish"):("/user/login")}`} type="button" className="btn ms-4 btn-light position-relative">
+                        <i className="bi text-dark bi-heart"></i> Wish <span className="position-absolute top-0 start-100
                     translate-middle badge rounded-pill bg-warning">0</span>
                     </Link>
-                    <Link href="/orders" type="button" className="btn ms-4 btn-light position-relative">
-                    <i className="bi text-dark bi-truck"></i> Order </Link>         
+                    <Link href={`${props.isLogin ? ("/user/order"):("/user/login")}`} type="button" className="btn ms-4 btn-light position-relative">
+                        <i className="bi text-dark bi-truck"></i> Order 
+                    </Link>         
                 </Nav>
                 <Nav>
                     <div className="input-group">
-                    <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-dark" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    </button>
+                        <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-dark" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
                     
                     </div>
                     <Link href="/cart" type="button" className="btn ms-2 btn-light position-relative">
-                    <i className="bi text-dark bi-bag"></i>
+                        <i className="bi text-dark bi-bag"></i>
                     </Link>
                     <Link href="/wish" type="button" className="btn ms-2 btn-light d-flex">
-                    <i className="bi text-dark bi-heart"></i>
+                        <i className="bi text-dark bi-heart"></i>
                     </Link>
-                    <Link type="button" className="btn ms-3 btn-success d-flex" href="/profile">Profile</Link>
-                    <Link type="button" className="btn ms-3 btn-success d-flex" href="/profile">Logout</Link>
+
+                    {props.isLogin ?
+                    ( <a type="button" className="btn ms-3 btn-success d-flex" href="/api/user/logout">Logout</a> )
+                    :( <Link type="button" className="btn ms-3 btn-success d-flex" href="/user/login">LogIn</Link>)
+                    }
+                    
+                    
                 </Nav>
                 </NavbarCollapse>
                 
