@@ -1,11 +1,13 @@
 "use client"
 
+import CartStore from '@/store/CartStore';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
 
 const CartList = (props) => {
     const router = useRouter()
+    const {CartListRequest} = CartStore();
 
     const remove= async(id) =>{
         await fetch(`/api/cart/list`, {
@@ -13,6 +15,7 @@ const CartList = (props) => {
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({id:id})
         });
+        await CartListRequest()
         router.refresh()
     }
     let total = 0;

@@ -1,4 +1,4 @@
-## 34 [Front-End] Show Remove Cart List Wish List And Counting.mp4
+## 35 [Front-End] Manage State Using Zustand For Cart And Wish Instant Counting
 
 
 

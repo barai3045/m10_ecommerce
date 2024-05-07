@@ -1,5 +1,7 @@
 "use client"
 
+import CartStore from '@/store/CartStore';
+import WishStore from '@/store/WishStore';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } from 'react-bootstrap';
@@ -7,27 +9,21 @@ import { Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } fro
 
 const AppNavBar = (props) => {
 
-    const [cart, setCart] = useState(0)
-    const [wish, setWish] = useState(0)
+    const {CartCount, CartListRequest} = CartStore()
+    const {WishCount, WishListRequest} = WishStore()
+    
 
     useEffect(()=>{
         (async()=>{
             if(props.isLogin){
-                let cartItems = (await(await fetch(`/api/cart/list`)).json())['data']
-                setCart(cartItems.length)
+                await CartListRequest()
+                await WishListRequest()
             }
 
         })()
     },[])
 
-    useEffect(()=>{
-        (async()=>{
-            if(props.isLogin){
-                let wishItems = (await(await fetch(`/api/wish/list`)).json())['data']
-                setWish(wishItems.length)
-            }
-        })()
-    },[])
+    
 
     return (
        <>
@@ -67,10 +63,10 @@ const AppNavBar = (props) => {
                     </Link>
                     <Link href={`${props.isLogin ? ("/user/cart"):("/user/login")}`} type="button" className="btn ms-2 btn-light position-relative">
                         <i className="bi text-dark bi-bag"></i> Cart 
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{cart}</span>
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{CartCount}</span>
                     </Link>
                     <Link href={`${props.isLogin ? ("/user/wish"):("/user/login")}`} type="button" className="btn ms-4 btn-light position-relative">
-                        <i className="bi text-dark bi-heart"></i> Wish <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">{wish}</span>
+                        <i className="bi text-dark bi-heart"></i> Wish <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">{WishCount}</span>
                     </Link>
                     <Link href={`${props.isLogin ? ("/user/order/list"):("/user/login")}`} type="button" className="btn ms-4 btn-light position-relative">
                         <i className="bi text-dark bi-truck"></i> Order 

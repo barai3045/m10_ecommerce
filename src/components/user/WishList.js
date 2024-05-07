@@ -3,16 +3,20 @@ import { useRouter } from 'next/navigation';
 import StarRatings from 'react-star-ratings';
 import React from 'react';
 import Link from 'next/link';
+import WishStore from '@/store/WishStore';
 
 
 const WishList = (props) => {
     const router = useRouter()
+    const {WishListRequest} = WishStore()
+
     const remove = async(product_id) => {
         await fetch(`/api/wish/list`, {
             method:'DELETE',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({product_id:product_id})
         });
+        await WishListRequest();
         router.refresh()
     }
 
