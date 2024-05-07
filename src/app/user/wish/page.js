@@ -1,10 +1,22 @@
+import Master from '@/components/master/Master';
+import WishList from '@/components/user/WishList';
+import { getCookies } from '@/utility/CookieHelper';
 import React from 'react';
 
-const page = () => {
+async function getData(){
+    let storedCookies=getCookies();
+    return (await (await fetch (`${process.env.HOST}/api/wish/list`, {cache:'no-cache', headers: {'Cookie': storedCookies}})).json())['data'];
+}
+
+
+
+const page = async () => {
+    let data=await getData();
+
     return (
-        <div>
-            
-        </div>
+        <Master>
+            <WishList data={data}/>
+        </Master>
     );
 };
 
