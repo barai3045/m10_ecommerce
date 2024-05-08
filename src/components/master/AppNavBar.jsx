@@ -7,6 +7,7 @@ import { Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } fro
 
 const AppNavBar = (props) => {
 
+    const [key, setKey] = useState("");
     const [cart, setCart] = useState(0)
     const [wish, setWish] = useState(0)
 
@@ -78,11 +79,10 @@ const AppNavBar = (props) => {
                 </Nav>
                 <Nav>
                     <div className="input-group">
-                        <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-dark" type="submit">
+                        <input  onChange={(e)=>setKey(e.target.value)} className="form-control" type="search" placeholder="Search" aria-label="Search" />
+                        <Link href={`/product/by-search?keyword=${key}`} className="btn btn-outline-dark" type="submit">
                         <i className="bi bi-search"></i>
-                        </button>
-                    
+                        </Link>
                     </div>
                     <Link href="/cart" type="button" className="btn ms-2 btn-light position-relative">
                         <i className="bi text-dark bi-bag"></i>

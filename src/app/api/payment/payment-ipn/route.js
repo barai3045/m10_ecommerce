@@ -20,7 +20,7 @@ export async function POST(req, res){
             data:{payment_status:reqBody['status']}
         })
 
-        return NextResponse.json({status:"success", data:result})
+        return NextResponse.redirect(new URL('/user/order/list', req.url), 303)
     } catch(e){
         return NextResponse.json({status:"fail", data:e.toString()})
     }
