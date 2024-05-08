@@ -80,7 +80,7 @@ const AppNavBar = (props) => {
                 <Nav>
                     <div className="input-group">
                         <input  onChange={(e)=>setKey(e.target.value)} className="form-control" type="search" placeholder="Search" aria-label="Search" />
-                        <Link href={`/product/by-search?keyword=${key}`} className="btn btn-outline-dark" type="submit">
+                        <Link style={{pointerEvents:key.length===0?("none"):("")}}  href={`/product/by-search?keyword=${key}`} className={key.length===0?("btn btn-dark"):("btn btn-outline-dark")} type="submit">
                         <i className="bi bi-search"></i>
                         </Link>
                     </div>
