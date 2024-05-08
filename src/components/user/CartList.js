@@ -15,6 +15,7 @@ const CartList = (props) => {
         });
         router.refresh()
     }
+
     let total = 0;
     props.data.map((item,i)=>{
         let qty = item['qty']
@@ -25,6 +26,13 @@ const CartList = (props) => {
 
         total += qty*price 
     })
+
+    const CreateInvoice= async()=>{
+        let res = await fetch (`/api/invoice/create`);
+        let resJSON = await res.json();
+        window.location.href = resJSON['data']['GatewayPageURL']
+    }
+
 
     return (
         <div className='container mt-3'>
@@ -73,7 +81,7 @@ const CartList = (props) => {
                                     <span className='float-end'> Payable: <i className='bi bi-currency-dollar'></i> {total*1.05}</span>                                </li>
                                 <li className='list-group-item bg-transparent'>
                                     <span className='float-end'> 
-                                    <button className='btn btn-success'>
+                                    <button onClick={CreateInvoice} className='btn btn-success'>
                                         Check out
                                     </button> </span>
                                 </li>
